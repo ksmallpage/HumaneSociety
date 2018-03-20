@@ -30,9 +30,8 @@ namespace HumaneSociety
             else if (employeeResult.employeeNumber == employee.employeeNumber && v == "read")
             {
 
-                Console.WriteLine(employeeResult.firsttName.ToString());
-                Console.WriteLine(employeeResult.lastName.ToString());
-                Console.WriteLine(employeeResult.email.ToString());
+                var str = ($"Employee Data : { employeeResult.firsttName.ToString()} {employeeResult.lastName.ToString()} email: {employeeResult.lastName.ToString()}");
+                UserInterface.DisplayUserOptions(str);
 
 
             }
