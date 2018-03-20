@@ -18,31 +18,37 @@ namespace HumaneSociety
         public static void RunEmployeeQueries(Employee employee, string v)
         {
             HumaneSocietyDataContext context = new HumaneSocietyDataContext();
-            Employee employeeResult = new Employee();
+            var employeeResult = new Employee();
 
-            employeeResult = (from x in context.Employees where x.ID == employee.ID select x).FirstOrDefault();
+            employeeResult = (from e in context.Employees where e.employeeNumber == employee.employeeNumber select e).FirstOrDefault();
             if (employeeResult == null && v == "create")
             {
                 employeeResult = employee;
-                //  employeeResult.firsttName = employee.firsttName;
-                // employeeResult.lastName = employee.lastName;
-                //  employeeResult.ID = employee.ID;
-                //  employeeResult.email = employee.email;
                 context.Employees.InsertOnSubmit(employeeResult);
-                context.SubmitChanges(); //does this also submit 
+                context.SubmitChanges();
             }
-            else if (v == "read")
+            else if (employeeResult.employeeNumber == employee.employeeNumber && v == "read")
             {
-                //read employee database
+
+                Console.WriteLine(employeeResult.firsttName.ToString());
+                Console.WriteLine(employeeResult.lastName.ToString());
+                Console.WriteLine(employeeResult.email.ToString());
+
+
             }
             else if (v == "update")
             {
                 // update employee 
             }
-            else  (v == "delete")
+            else if (v == "delete")
             {
-                // delete employee from database
+
             }
+
+           
+            
+               // delete employee from database
+            
 
         }
 
@@ -111,18 +117,18 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static int? GetBreed()
-        {
-            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
-            Breed breed = new Breed();
-            Catagory cat = new Catagory();
+        //public static int? GetBreed()
+        //{
+        //    HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+        //    Breed breed = new Breed();
+        //    Catagory cat = new Catagory();
 
-            var breeds = from b in context.Breeds
-                         select b.catagory;
-            return breeds;
+        //    var breeds = from b in context.Breeds
+        //                 select b.catagory;
+        //    return breed;
 
       
-        }
+     //   }
 
         internal static int? GetDiet()
         {

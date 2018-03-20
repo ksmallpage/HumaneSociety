@@ -63,18 +63,18 @@ namespace HumaneSociety
             Console.Clear();
             List<string> adoptionInfo = new List<string>();
             int counter = 1;
-            var adoptions = Query.GetPendingAdoptions().ToList();
-            if(adoptions.Count > 0)
+     //       var adoptions = Query.GetPendingAdoptions().ToList();
+     //       if(adoptions.Count > 0)
             {
-                foreach(ClientAnimalJunction data in adoptions)
+     //           foreach(ClientAnimalJunction data in adoptions)
                 {
-                    adoptionInfo.Add($"{counter}. {data.Client1.firstName} {data.Client1.lastName}, {data.Animal1.name} {data.Animal1.Breed1}");
+     //               adoptionInfo.Add($"{counter}. {data.Client1.firstName} {data.Client1.lastName}, {data.Animal1.name} {data.Animal1.Breed1}");
                     counter++;
                 }
                 UserInterface.DisplayUserOptions(adoptionInfo);
                 UserInterface.DisplayUserOptions("Enter the number of the adoption you would like to approve");
                 int input = UserInterface.GetIntegerData();
-                ApproveAdoption(adoptions[input - 1]);
+      //          ApproveAdoption(adoptions[input - 1]);
             }
 
         }
@@ -159,9 +159,9 @@ namespace HumaneSociety
         {
             List<string> shotInfo = new List<string>();
             var shots = Query.GetShots(animal);
-            foreach(AnimalShotJunction shot in shots.ToList())
+     //       foreach(AnimalShotJunction shot in shots.ToList())
             {
-                shotInfo.Add($"{shot.Shot.name} Date: {shot.dateRecieved}");
+     //           shotInfo.Add($"{shot.Shot.name} Date: {shot.dateRecieved}");
             }
             if(shotInfo.Count > 0)
             {
@@ -244,7 +244,7 @@ namespace HumaneSociety
         {
             Console.Clear();
             Animal animal = new Animal();
-            animal.breed = Query.GetBreed(); // prompt for breed return the 
+     //       animal.breed = Query.GetBreed(); // prompt for breed return the 
             animal.name = UserInterface.GetStringData("name", "the animal's");
             animal.age = UserInterface.GetIntegerData("age", "the animal's");
             animal.demeanor = UserInterface.GetStringData("demeanor", "the animal's");
