@@ -30,7 +30,7 @@ namespace HumaneSociety
             else if (employeeResult.employeeNumber == employee.employeeNumber && v == "read")
             {
 
-                var str = ($"Employee Data : { employeeResult.firsttName.ToString()} {employeeResult.lastName.ToString()} email: {employeeResult.lastName.ToString()}");
+                string str = ($"Employee Data : { employeeResult.firsttName.ToString()} {employeeResult.lastName.ToString()} email: {employeeResult.lastName.ToString()}");
                 UserInterface.DisplayUserOptions(str);
 
 
@@ -81,14 +81,47 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        internal static bool CheckEmployeeUserNameExist(string username)
+        public static bool CheckEmployeeUserNameExist(string username)
         {
-            throw new NotImplementedException();
+            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+            var employeeResult = new Employee();
+
+            employeeResult = (from e in context.Employees where e.userName == username select e).FirstOrDefault();
+            if(employeeResult != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+
         }
 
         internal static void AddUsernameAndPassword(Employee employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+                var employeeResult = new Employee();
+
+                employeeResult = (from e in context.Employees where e.employeeNumber == employee.employeeNumber select e).FirstOrDefault();
+
+
+
+                employeeResult.pass = employee.pass;
+                employeeResult.userName = employee.userName;
+
+                context.SubmitChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            
         }
 
         internal static object GetShots(Animal animal)
@@ -101,9 +134,15 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
+        public static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
-            throw new NotImplementedException();
+            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+            var employeeResult = new Employee();
+
+            employeeResult = (from e in context.Employees where e.employeeNumber == employeeNumber && e.email == email select e).FirstOrDefault();
+
+            return employeeResult;
+                
         }
 
         internal static void EnterUpdate(Animal animal, Dictionary<int, string> updates)
