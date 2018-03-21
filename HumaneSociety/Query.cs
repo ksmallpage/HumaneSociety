@@ -183,9 +183,14 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        internal static Employee EmployeeLogin(string userName, string password)
+        public static Employee EmployeeLogin(string userName, string password)
         {
-            throw new NotImplementedException();
+            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+            var employeeResult = new Employee();
+
+            employeeResult = (from e in context.Employees where e.userName == userName && e.pass == password select e).FirstOrDefault();
+
+            return employeeResult;
         }
 
         internal static object GetStates()
