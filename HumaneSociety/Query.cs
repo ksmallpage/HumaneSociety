@@ -155,20 +155,29 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        //public static int? GetBreed()
-        //{
-        //    HumaneSocietyDataContext context = new HumaneSocietyDataContext();
-        //    Breed breed = new Breed();
-        //    Catagory cat = new Catagory();
+        public static int? GetBreed()
+        {
+            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+            Breed breedcontext = new Breed();
+            Catagory catagorycontext = new Catagory();
+            breedcontext.breed1 = UserInterface.GetStringData("the animal", "the breed of  ");
+            breedcontext.pattern = UserInterface.GetStringData("the animal", "the pattern of  ");
+            breedcontext = (from b in context.Breeds where b.ID == breedcontext.ID select b).FirstOrDefault();
+            context.SubmitChanges();
 
-        //    var breeds = from b in context.Breeds
-        //                 select b.catagory;
-        //    return breed;
+           // catagorycontext.catagory1 = UserInterface.GetStringData("the animal", "the type of  ");
 
-      
-     //   }
+          //  context.SubmitChanges();
 
-        internal static int? GetDiet()
+           // breed = (from b in context.Breeds where b.ID == breedcontext.ID select b).FirstOrDefault();
+
+
+            return breedcontext.ID;
+
+
+        }
+
+            internal static int? GetDiet()
         {
             throw new NotImplementedException();
         }
